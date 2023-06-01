@@ -21,7 +21,6 @@ steps:
     cliSources: '.'
 
 
-
 - task: Bash@3
   displayName: Installing dependencies
   inputs:
