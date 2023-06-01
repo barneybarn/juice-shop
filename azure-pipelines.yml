@@ -1,0 +1,50 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'sonarqube'
+    scannerMode: 'MSBuild'
+    projectKey: 'ADO_TDP'
+    projectName: 'ADO_TDP_Sonar'
+
+- task: Bash@3
+  displayName: Installing dependencies
+  inputs:
+    targetType: 'inline'
+    script: 'npm install'
+
+- task: Bash@3
+  displayName: Build frontend
+  inputs:
+    targetType: 'inline'
+    script: 'npm build:frontend'
+
+- task: Bash@3
+  displayName: Build backend
+  inputs:
+    targetType: 'inline'
+    script: 'npm build:server'
+
+- task: Bash@3
+  displayName: Run tests
+  inputs:
+    targetType: 'inline'
+    script: 'npm test'
+
+- task: SonarQubeAnalyze@5
+  displayName: Run code scan with sonarqube
+ 
+- task: SonarQubePublish@5
+  displayName: publish scan results to sonarqube
+  inputs:
+    pollingTimeoutSec: '300'
