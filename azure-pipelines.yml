@@ -27,13 +27,13 @@ steps:
   displayName: Build frontend
   inputs:
     targetType: 'inline'
-    script: 'npm build:frontend'
+    script: 'npm run build:frontend'
 
 - task: Bash@3
   displayName: Build backend
   inputs:
     targetType: 'inline'
-    script: 'npm build:server'
+    script: 'npm run build:server'
 
 - task: Bash@3
   displayName: Run tests
