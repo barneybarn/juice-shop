@@ -33,6 +33,18 @@ steps:
     targetType: 'inline'
     script: 'npm run build:frontend'
 
+- task: Bash@3
+  displayName: Install Angular
+  inputs:
+    targetType: 'inline'
+    script: 'npm install -g @angular/cli'
+
+- task: Bash@3
+  displayName: Run tests
+  inputs:
+    targetType: 'inline'
+    script: 'npm test'
+
 - task: SonarQubeAnalyze@5
   displayName: Run code scan with sonarqube
  
