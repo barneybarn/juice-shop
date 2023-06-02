@@ -46,6 +46,12 @@ steps:
     script: 'sudo apt -y install node-istanbul'
 
 - task: Bash@3
+  displayName: Install nyc
+  inputs:
+    targetType: 'inline'
+    script: 'npm install nyc'
+
+- task: Bash@3
   displayName: Run tests
   inputs:
     targetType: 'inline'
