@@ -45,6 +45,14 @@ steps:
     targetType: 'inline'
     script: 'npm test'
 
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs: 
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/lcov.info'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+    failIfCoverageEmpty: true
+
 - task: SonarQubeAnalyze@5
   displayName: Run code scan with sonarqube
  
