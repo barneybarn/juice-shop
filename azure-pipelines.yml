@@ -40,22 +40,10 @@ steps:
     script: 'npm install -g @angular/cli'
 
 - task: Bash@3
-  displayName: Install Instanbul
-  inputs:
-    targetType: 'inline'
-    script: 'sudo apt -y install node-istanbul'
-
-- task: Bash@3
-  displayName: Install nyc
-  inputs:
-    targetType: 'inline'
-    script: 'npm install nyc'
-
-- task: Bash@3
   displayName: Run tests
   inputs:
     targetType: 'inline'
-    script: 'nyc --reporter=cobertura --reporter=html npm test -- --reporter karma-junit-reporter outputDir=./test-results/junit outputFile=./test-results.xml'
+    script: 'npm test'
 
 - task: PublishTestResults@2
   displayName: Publish test results
