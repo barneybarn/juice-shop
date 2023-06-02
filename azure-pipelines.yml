@@ -49,7 +49,7 @@ steps:
   displayName: Run tests
   inputs:
     targetType: 'inline'
-    script: 'npm test'
+    script: 'nyc --reporter=cobertura --reporter=html npm test -- --reporter karma-junit-reporter outputDir=./test-results/junit outputFile=./test-results.xml'
 
 - task: PublishTestResults@2
   displayName: Publish test results
