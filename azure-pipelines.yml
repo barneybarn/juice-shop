@@ -48,7 +48,6 @@ steps:
 
 - task: SonarQubeAnalyze@5
   displayName: Run code scan with sonarqube
- 
 - task: SonarQubePublish@5
   displayName: publish scan results to sonarqube
   inputs:
